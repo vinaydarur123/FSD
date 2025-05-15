@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Dashboard</title>
+</head>
+<body>
+
+    <header>
+        <h1>Student Dashboard</h1>
+        <nav>
+            <a href="#">Home</a> |
+            <a href="#">Subjects</a> |
+            <a href="#">Attendance</a> |
+            <a href="#">Feedback</a>
+        </nav>
+        <hr>
+    </header>
+
+    <main>
+
+        <section>
+            <h2>Subject-Wise Performance</h2>
+
+            <article>
+                <h2>Mathematics</h2>
+                <p>Test Date: <time datetime="2025-03-10">March 10, 2025</time></p>
+                <p>Assignment Completion:</p>
+                <progress value="4" max="5"></progress>
+                <p>Test Score:</p>
+                <meter value="78" min="0" max="100" low="40" high="90" optimum="95">78%</meter>
+                <br><br>
+                <button>Show Comments</button>
+                <details>
+                    <summary>Teacher Feedback</summary>
+                    <p>Good progress </p>
+                </details>
+            </article>
+
+            <article>
+                <h2>Science</h2>
+                <p>Test Date: <time datetime="2025-03-12">March 12, 2025</time></p>
+                <p>Assignment Completion:</p>
+                <progress value="3" max="5"></progress>
+                <p>Test Score:</p>
+                <meter value="65" min="0" max="100" low="40" high="90" optimum="95">65%</meter>
+                <br><br>
+                <button>Show Comments</button>
+                <details>
+                    <summary>Teacher Feedback</summary>
+                    <p>Needs improvement in theory.</p>
+                </details>
+            </article>
+        </section>
+
+        <section>
+            <h2>Overall Performance</h2>
+            <p>Average Score:</p>
+            <meter value="72" min="0" max="100" low="40" high="90" optimum="95">72%</meter>
+            <p>Total Assignment Completion:</p>
+            <progress value="7" max="10"></progress>
+        </section>
+
+    </main>
+
+    <aside>
+        <h2>Student Profile</h2>
+        <p><strong>Name:</strong> Darur Vinay</p>
+        <p><strong>Registration Number:</strong> 1MS24SCS05</p>
+        <p><strong>Semester:</strong> 2nd</p>
+        <figure>
+            <img src="https://cdn.pixabay.com/photo/2024/03/19/15/23/boy-8643450_1280.png" alt="Student Photo" height="200" width="200">
+            <figcaption>Darur Vinay - Computer Science</figcaption>
+        </figure>
+    </aside>
+
+    <footer>
+        <hr>
+        <p>Contact: vinay@college.edu</p>
+        <p>&copy; <time datetime="2025">2025</time> MSRIT. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
