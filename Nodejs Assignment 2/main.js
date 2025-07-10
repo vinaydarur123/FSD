@@ -7,7 +7,7 @@ const rl = readline.createInterface({
 
 rl.question('Enter a word: ', async (word) => {
     if (word) {
-        const { capitalize } = await import('./stringUtils.js');
+        const { capitalize } = await import('./string.js');
         console.log(`Capitalized: ${capitalize(word)}`);
     } else {
         console.log('No word entered.');
