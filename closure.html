@@ -1,1 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hospital Bed Manager</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+      background: #f4f9ff;
+    }
+    h2 {
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: white;
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+    button {
+      padding: 6px 12px;
+      margin: 2px;
+      border: none;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .allocate { background-color: #28a745; }
+    .discharge { background-color: #dc3545; }
+  </style>
+</head>
+<body>
+
+  <h2>🏥 Hospital Bed Management System</h2>
+
+  <table id="hospitalTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Hospital</th>
+        <th>Location</th>
+        <th>Type</th>
+        <th>Total Beds</th>
+        <th>Available Beds</th>
+        <th>Contact</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    // Closure for bed management per hospital
+    function createHospitalManager(hospital) {
+      let availableBeds = hospital.totalBeds;
+
+      return {
+        getDetails: () => hospital,
+        getAvailableBeds: () => availableBeds,
+        allocateBed: () => {
+          if (availableBeds > 0) {
+            availableBeds--;
+            return true;
+          }
+          return false;
+        },
+        dischargeBed: () => {
+          if (availableBeds < hospital.totalBeds) {
+            availableBeds++;
+            return true;
+          }
+          return false;
+        }
+      };
+    }
+
+    // Initial hospital list
+    const hospitalList = [
+      { id: 1, name: "Apollo Hospital", location: "Chennai", type: "Private", totalBeds: 100, contact: "044-24567890" },
+      { id: 2, name: "AIIMS Delhi", location: "New Delhi", type: "Government", totalBeds: 150, contact: "011-26588500" },
+      { id: 3, name: "NIMS", location: "Hyderabad", type: "Government", totalBeds: 120, contact: "040-23396552" }
+    ];
+
+    const hospitals = hospitalList.map(createHospitalManager);
+    const tbody = document.querySelector("#hospitalTable tbody");
+
+    function renderTable() {
+      tbody.innerHTML = "";
+      hospitals.forEach((manager, index) => {
+        const data = manager.getDetails();
+        const availableBeds = manager.getAvailableBeds();
+
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${data.id}</td>
+          <td>${data.name}</td>
+          <td>${data.location}</td>
+          <td>${data.type}</td>
+          <td>${data.totalBeds}</td>
+          <td>${availableBeds}</td>
+          <td>${data.contact}</td>
+          <td>
+            <button class="allocate" onclick="allocateBed(${index})">Allocate</button>
+            <button class="discharge" onclick="dischargeBed(${index})">Discharge</button>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    function allocateBed(index) {
+      if (hospitals[index].allocateBed()) {
+        alert("✅ Bed allocated successfully!");
+      } else {
+        alert("❌ No beds available!");
+      }
+      renderTable();
+    }
+
+    function dischargeBed(index) {
+      if (hospitals[index].dischargeBed()) {
+        alert("🛏️ Patient discharged, bed available!");
+      } else {
+        alert("⚠️ All beds already available.");
+      }
+      renderTable();
+    }
+
+    // Initial load
+    renderTable();
+  </script>
+
+</body>
+</html>
 
